@@ -1,2 +1,20 @@
-# fast-drools-spring-boot-starter
-It provides fast drools rule control and supports the real-time updating of rules.提供了快捷的规则引擎操作
+简体中文
+## 介绍
+`fast-drools-spring-boot-starter`提供了SpringBoot与Drools的快速整合，并且能够无感知地实现规则文件的动态加载，方便开发人员以及运维人员。
+
+
+## 当前功能
+- - [x] 快速整合
+- - [x] 规则文件动态加载
+- - [x] 规则文件分组控制
+- - [x] 使用NIO的文件映射，更快速的文件的读写
+- - [x] 基于缓存的规则文件控制，更高效的规则评估
+
+
+## 未来功能
+- - [ ] 基于分布式的评估与决策
+- - [ ] 规则文件的GUI控制
+- - [ ] 决策表的GUI控制
+
+
+## 使用方法
