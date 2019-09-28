@@ -1,7 +1,6 @@
 package com.drools.core;
 
 import com.drools.core.util.FileUtil;
-import com.drools.core.util.ThreadPoolExecutorUtil;
 import org.drools.decisiontable.InputType;
 import org.drools.decisiontable.SpreadsheetCompiler;
 import org.kie.api.KieBase;
@@ -177,7 +176,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     /**
      * 私有，do开头，0结尾的方法全部为私有
      */
-    private void doRead0() {
+    public void doRead0() {
         // 先存入1级缓存
         String pathTotal = getPath();
         String[] pathArray = pathTotal.split(KieAccessor.PATH_SPLIT);

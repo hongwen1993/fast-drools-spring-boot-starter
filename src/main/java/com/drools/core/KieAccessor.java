@@ -3,7 +3,6 @@ package com.drools.core;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.util.Assert;
 
 /**
  * @author <a href="mailto:hongwen0928@outlook.com">Karas</a>
