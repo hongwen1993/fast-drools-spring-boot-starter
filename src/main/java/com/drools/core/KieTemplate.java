@@ -1,5 +1,7 @@
 package com.drools.core;
 
+import com.drools.core.util.FileUtil;
+import com.drools.core.util.ThreadPoolExecutorUtil;
 import org.drools.decisiontable.InputType;
 import org.drools.decisiontable.SpreadsheetCompiler;
 import org.kie.api.KieBase;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author <a href="mailto:hongwen0928@outlook.com">Karas</a>
@@ -69,6 +72,9 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         List<String> ds = new ArrayList<>();
         for (String name : fileName) {
             ds.add(CACHE_RULE.get(name));
+        }
+        if (ds.isEmpty()) {
+            doRead0();
         }
         return decodeToSession(ds.toArray(new String[]{}));
     }
@@ -168,6 +174,25 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         return kieContainer.getKieBase();
     }
 
+    /**
+     * 私有，do开头，0结尾的方法全部为私有
+     */
+    private void doRead0() {
+        // 先存入1级缓存
+        String pathTotal = getPath();
+        String[] pathArray = pathTotal.split(KieAccessor.PATH_SPLIT);
+        List<File> fileList = new ArrayList<>();
+        for (String path : pathArray) {
+            FileUtil.fileList(path, fileList);
+        }
+        for (File file : fileList) {
+            String fileName = file.getName();
+            String content = encodeToString(file.getPath());
+            CACHE_RULE.put(fileName, content);
+        }
+        // 有Redis则存入Redis
+
+    }
 
 
 }

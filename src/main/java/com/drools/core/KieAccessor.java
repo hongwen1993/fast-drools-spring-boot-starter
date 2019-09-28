@@ -24,7 +24,9 @@ public class KieAccessor implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(path, "path is necessary");
+        if (path == null || path.length() == 0) {
+            logger.error("Please set base path(spring.drools.path = xxx).");
+        }
     }
 
     public String getPath() {
