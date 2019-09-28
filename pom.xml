@@ -10,7 +10,7 @@
     <url>https://github.com/hongwen1993/</url>
 
     <name>fast-drools-spring-boot-starter</name>
-    <description>提供了SpringBoot与Drools的快速整合,并且能够无感知地实现规则文件的动态加载,方便开发人员以及运维人员.</description>
+    <description>https://github.com/hongwen1993/fast-drools-spring-boot-starter</description>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -27,9 +27,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/hongwen1993/fast-drools-spring-boot-starter.git</url>
-        <connection>https://github.com/hongwen1993/fast-drools-spring-boot-starter.git</connection>
-        <developerConnection>https://github.com/hongwen1993/fast-drools-spring-boot-starter.git</developerConnection>
+        <url>https://github.com/hongwen1993/fast-drools-spring-boot-starter</url>
+        <connection>scm:git:https://github.com/hongwen1993/fast-drools-spring-boot-starter</connection>
+        <developerConnection>scm:git:git@github.com/hongwen1993/fast-drools-spring-boot-starter.git</developerConnection>
     </scm>
 
     <developers>
@@ -37,7 +37,6 @@
             <name>HongWen</name>
             <email>hongwen0928@outlook.com</email>
             <organization>https://github.com/hongwen1993</organization>
-            <timezone>+8</timezone>
         </developer>
     </developers>
 
@@ -119,7 +118,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>2.4</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
@@ -133,13 +132,16 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>2.9.1</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
+                                <configuration>
+                                    <additionalparam>-Xdoclint:none</additionalparam>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -160,10 +162,11 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!-- Sonatype plugins -->
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.3</version>
+                        <version>1.6.8</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>releases</serverId>
@@ -171,6 +174,18 @@
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
+
+                    <!-- compiler -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.8.1</version>
+                        <configuration>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                        </configuration>
+                    </plugin>
+                    <!-- release -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-release-plugin</artifactId>
@@ -180,15 +195,6 @@
                             <useReleaseProfile>false</useReleaseProfile>
                             <releaseProfiles>release</releaseProfiles>
                             <goals>deploy</goals>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.5.1</version>
-                        <configuration>
-                            <source>1.8</source>
-                            <target>1.8</target>
                         </configuration>
                     </plugin>
 
