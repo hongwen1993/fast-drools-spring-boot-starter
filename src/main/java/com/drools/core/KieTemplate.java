@@ -178,6 +178,9 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     public void doRead0() {
         // 先存入1级缓存
         String pathTotal = getPath();
+        if (pathTotal == null || pathTotal.length() == 0) {
+            return;
+        }
         String[] pathArray = pathTotal.split(KieAccessor.PATH_SPLIT);
         List<File> fileList = new ArrayList<>();
         for (String path : pathArray) {

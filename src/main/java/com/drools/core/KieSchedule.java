@@ -22,13 +22,16 @@ public class KieSchedule implements InitializingBean {
 
     public void execute() {
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleAtFixedRate(new RuleCache(kieTemplate), 1,
-                kieTemplate.getUpdate(), TimeUnit.SECONDS);
+        Long update = kieTemplate.getUpdate();
+        if (update == null || update == 0L) {
+            update = 30L;
+        }
+        service.scheduleAtFixedRate(new RuleCache(kieTemplate), 1, update, TimeUnit.SECONDS);
     }
 
     @Override
     public void afterPropertiesSet() {
-        ThreadPoolExecutorUtil.start.execute(new RuleCache(kieTemplate));
+        //ThreadPoolExecutorUtil.start.execute(new RuleCache(kieTemplate));
     }
 
 
