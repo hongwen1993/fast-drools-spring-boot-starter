@@ -73,6 +73,9 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         }
         if (ds.isEmpty()) {
             doRead0();
+            for (String name : fileName) {
+                ds.add(CACHE_RULE.get(name));
+            }
         }
         return decodeToSession(ds.toArray(new String[]{}));
     }
