@@ -18,6 +18,7 @@ import org.kie.api.runtime.KieSession;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.utils.KieHelper;
 import org.springframework.beans.factory.BeanClassLoaderAware;
+import org.springframework.util.Assert;
 
 import java.io.*;
 import java.nio.CharBuffer;
@@ -25,6 +26,7 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -69,13 +71,12 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     public KieSession getKieSession(String... fileName) {
         List<String> ds = new ArrayList<>();
         for (String name : fileName) {
-            ds.add(CACHE_RULE.get(name));
-        }
-        if (ds.isEmpty()) {
-            doRead0();
-            for (String name : fileName) {
-                ds.add(CACHE_RULE.get(name));
+            String content = CACHE_RULE.get(name);
+            if (content == null || content.trim().length() == 0) {
+                ds = doReadTemp();
+                return decodeToSession(ds.toArray(new String[]{}));
             }
+            ds.add(CACHE_RULE.get(name));
         }
         return decodeToSession(ds.toArray(new String[]{}));
     }
@@ -178,11 +179,13 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     /**
      * 私有，do开头，0结尾的方法全部为私有
      */
-    public void doRead0() {
+    public List<String> doRead0() {
+        // 存放临时规则文件
+        List<String> ds = new ArrayList<>();
         // 先存入1级缓存
         String pathTotal = getPath();
         if (pathTotal == null || pathTotal.length() == 0) {
-            return;
+            return ds;
         }
         String[] pathArray = pathTotal.split(KieAccessor.PATH_SPLIT);
         List<File> fileList = new ArrayList<>();
@@ -193,9 +196,33 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             String fileName = file.getName();
             String content = encodeToString(file.getPath());
             CACHE_RULE.put(fileName, content);
+            ds.add(content);
         }
         // 有Redis则存入Redis
 
+        return ds;
+    }
+
+    private List<String> doReadTemp(String... fileName) {
+        // 转换成集合
+        List<String> fl = Arrays.asList(fileName);
+        // 存放临时规则文件
+        List<String> ds = new ArrayList<>();
+        // 先存入1级缓存
+        String pathTotal = getPath();
+        Assert.notNull(pathTotal, "path must be not null");
+        String[] pathArray = pathTotal.split(KieAccessor.PATH_SPLIT);
+        List<File> fileList = new ArrayList<>();
+        for (String path : pathArray) {
+            FileUtil.fileList(path, fileList);
+        }
+        for (File file : fileList) {
+            if (fl.contains(file.getName())) {
+                String content = encodeToString(file.getPath());
+                ds.add(content);
+            }
+        }
+        return ds;
     }
 
 

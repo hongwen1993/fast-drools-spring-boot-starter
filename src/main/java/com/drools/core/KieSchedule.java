@@ -31,7 +31,7 @@ public class KieSchedule implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        //ThreadPoolExecutorUtil.start.execute(new RuleCache(kieTemplate));
+
     }
 
 
