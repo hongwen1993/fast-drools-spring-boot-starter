@@ -37,7 +37,7 @@
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>1.3.RELEASE</version>
+      <version>2.0.6</version>
   </dependency>
   ```
 - 在配置文件中指定规则文件的路径
