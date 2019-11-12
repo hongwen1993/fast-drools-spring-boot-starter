@@ -93,24 +93,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         }
         // drl文件
         if (realPath.endsWith("drl")) {
-            RandomAccessFile raf = null;
-            try {
-                raf = new RandomAccessFile(realPath, "r");
-                FileChannel channel = raf.getChannel();
-                MappedByteBuffer mappedByteBuffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, file.length());
-                CharBuffer charBuffer = Charset.forName("UTF-8").decode(mappedByteBuffer);
-                return charBuffer.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (raf != null) {
-                        raf.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            return read(file);
         }
         InputStream is = null;
         try {
@@ -128,6 +111,40 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         }
         return null;
     }
+
+    /**
+     * 读取drl文件
+     */
+    private String read(File file) {
+        FileInputStream fis = null;
+        ByteArrayOutputStream bos = null;
+        try {
+            fis = new FileInputStream(file);
+            bos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fis.read(buffer)) != -1) {
+                bos.write(buffer, 0, length);
+            }
+            return bos.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bos != null) {
+                    bos.close();
+                }
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return null;
+    }
+
 
     /**
      * 把字符串解析成KieSession
