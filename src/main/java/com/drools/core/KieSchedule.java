@@ -1,10 +1,8 @@
 package com.drools.core;
 
-import com.drools.core.util.ThreadPoolExecutorUtil;
+import com.drools.core.util.ScheduledThreadPoolExecutorUtil;
 import org.springframework.beans.factory.InitializingBean;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,12 +19,13 @@ public class KieSchedule implements InitializingBean {
     }
 
     public void execute() {
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         Long update = kieTemplate.getUpdate();
         if (update == null || update == 0L) {
             update = 30L;
         }
-        service.scheduleAtFixedRate(new RuleCache(kieTemplate), 1, update, TimeUnit.SECONDS);
+        ScheduledThreadPoolExecutorUtil.RULE_SCHEDULE.
+                scheduleAtFixedRate(new RuleCache(kieTemplate),
+                1, update, TimeUnit.SECONDS);
     }
 
     @Override

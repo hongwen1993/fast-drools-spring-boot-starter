@@ -1,6 +1,7 @@
 package com.drools.core;
 
 import com.drools.core.util.FileUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.drools.decisiontable.InputType;
 import org.drools.decisiontable.SpreadsheetCompiler;
 import org.kie.api.KieBase;
@@ -21,15 +22,13 @@ import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.util.Assert;
 
 import java.io.*;
-import java.nio.CharBuffer;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static com.drools.core.common.Constants.*;
 
 /**
  * @author <a href="mailto:hongwen0928@outlook.com">Karas</a>
@@ -72,8 +71,9 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         List<String> ds = new ArrayList<>();
         for (String name : fileName) {
             String content = CACHE_RULE.get(name);
-            if (content == null || content.trim().length() == 0) {
-                ds = doReadTemp();
+            if (StringUtils.isBlank(content)) {
+                ds = doReadTemp(name);
+                System.out.println("ds : " + ds);
                 return decodeToSession(ds.toArray(new String[]{}));
             }
             ds.add(CACHE_RULE.get(name));
@@ -92,7 +92,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             return null;
         }
         // drl文件
-        if (realPath.endsWith("drl")) {
+        if (realPath.endsWith(SUFFIX_DRL)) {
             return read(file);
         }
         InputStream is = null;
@@ -102,11 +102,11 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             logger.error("file not fount.");
         }
         // xls文件
-        if (realPath.endsWith("xls")) {
+        if (realPath.endsWith(SUFFIX_EXCEL)) {
             return new SpreadsheetCompiler().compile(is, InputType.XLS);
         }
         // csv文件
-        if (realPath.endsWith("csv")) {
+        if (realPath.endsWith(SUFFIX_CSV)) {
             return new SpreadsheetCompiler().compile(is, InputType.CSV);
         }
         return null;
@@ -196,13 +196,11 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     /**
      * 私有，do开头，0结尾的方法全部为私有
      */
-    public List<String> doRead0() {
-        // 存放临时规则文件
-        List<String> ds = new ArrayList<>();
+    public void doRead0() {
         // 先存入1级缓存
         String pathTotal = getPath();
         if (pathTotal == null || pathTotal.length() == 0) {
-            return ds;
+            return;
         }
         String[] pathArray = pathTotal.split(KieAccessor.PATH_SPLIT);
         List<File> fileList = new ArrayList<>();
@@ -213,11 +211,10 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             String fileName = file.getName();
             String content = encodeToString(file.getPath());
             CACHE_RULE.put(fileName, content);
-            ds.add(content);
         }
         // 有Redis则存入Redis
+        // ....
 
-        return ds;
     }
 
     private List<String> doReadTemp(String... fileName) {
@@ -237,6 +234,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             if (fl.contains(file.getName())) {
                 String content = encodeToString(file.getPath());
                 ds.add(content);
+                CACHE_RULE.put(file.getName(), content);
             }
         }
         return ds;
