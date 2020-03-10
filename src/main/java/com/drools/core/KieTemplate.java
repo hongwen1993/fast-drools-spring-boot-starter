@@ -73,7 +73,6 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             String content = CACHE_RULE.get(name);
             if (StringUtils.isBlank(content)) {
                 ds = doReadTemp(name);
-                System.out.println("ds : " + ds);
                 return decodeToSession(ds.toArray(new String[]{}));
             }
             ds.add(CACHE_RULE.get(name));
