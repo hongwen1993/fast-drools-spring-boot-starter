@@ -12,7 +12,7 @@
 
 ## 当前功能
 
-- 快速整合
+- SpringBoot与Drools快速整合，再也不需要配置繁琐的kmodule.xml啦。
 - 规则文件动态加载
 - 规则文件分组控制
 - 使用NIO的文件映射，更快速的文件的读写
@@ -31,13 +31,13 @@
 
 
 ## 使用方法
-- 在`pom.xml`中引入依赖：
+- 在`pom.xml`中引入依赖（update 2020/03/10）：
 
   ```xml
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>2.0.6</version>
+      <version>2.1.0</version>
   </dependency>
   ```
 - 在配置文件中指定规则文件的路径
