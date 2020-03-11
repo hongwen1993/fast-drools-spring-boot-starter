@@ -1,4 +1,4 @@
-![Milvuslogo](https://github.com/hongwen1993/fast-drools-spring-boot-starter/blob/master/logo.png)
+![fast-drools-logo](https://cdn.u1.huluxia.com/g3/M01/A4/6B/wKgBOV5oPoWAYFEhAADLni7s6JI458.png)
 
 ![LICENSE](https://img.shields.io/badge/license-Apache--2.0-brightgreen)
 ![Language](https://img.shields.io/badge/language-JAVA-blue)
