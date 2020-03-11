@@ -1,4 +1,4 @@
-![fast-drools-logo](https://cdn.u1.huluxia.com/g3/M01/A4/6B/wKgBOV5oPoWAYFEhAADLni7s6JI458.png)
+![fast-drools-logo](https://icon.qiantucdn.com/20200311/a2c3a1476c48b18991ebd59ae7c80a342)
 
 ![LICENSE](https://img.shields.io/badge/license-Apache--2.0-brightgreen)
 ![Language](https://img.shields.io/badge/language-JAVA-blue)
