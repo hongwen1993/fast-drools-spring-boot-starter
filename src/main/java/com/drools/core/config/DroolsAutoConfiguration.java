@@ -2,8 +2,11 @@ package com.drools.core.config;
 
 import com.drools.core.KieSchedule;
 import com.drools.core.KieTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.data.redis.CacheCenterAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,10 +29,13 @@ public class DroolsAutoConfiguration {
         return kieTemplate;
     }
 
+
+
     @Bean
-    @ConditionalOnMissingBean(name = "kieSchedule")
-    public KieSchedule kieSchedule(KieTemplate kieTemplate) {
-        KieSchedule kieSchedule = new KieSchedule(kieTemplate);
+    @ConditionalOnMissingBean(CacheCenterAutoConfiguration.class)
+    public KieSchedule kieSchedule(KieTemplate kieTemplate, ApplicationContext applicationContext) {
+        System.out.println("kieSchedule");
+        KieSchedule kieSchedule = new KieSchedule(kieTemplate, applicationContext);
         kieSchedule.execute();
         return kieSchedule;
     }

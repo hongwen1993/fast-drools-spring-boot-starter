@@ -1,1 +1,4 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.drools.core.config.DroolsAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.drools.core.config.DroolsAutoConfiguration,\
+org.springframework.boot.autoconfigure.data.redis.CacheCenterAutoConfiguration,\
+com.drools.core.process.RedisAutoProcess
