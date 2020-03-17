@@ -6,7 +6,7 @@
 
     <groupId>com.github.hongwen1993</groupId>
     <artifactId>fast-drools-spring-boot-starter</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.6</version>
     <url>https://github.com/hongwen1993/</url>
 
     <name>fast-drools-spring-boot-starter</name>
