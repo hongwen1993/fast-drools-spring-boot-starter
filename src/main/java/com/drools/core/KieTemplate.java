@@ -102,7 +102,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         }
         // excel文件 xls和xlsx都支持
         // @author <a href="mailto:312182539@qq.com">fbf</a>
-        if (realPath.endsWith(SUFFIX_EXCEL)||realPath.endsWith(SUFFIX_EXCEL_2017)) {
+        if (realPath.endsWith(SUFFIX_EXCEL)||realPath.endsWith(SUFFIX_EXCEL_2007)) {
             return new SpreadsheetCompiler().compile(is, InputType.XLS);
         }
         // csv文件
