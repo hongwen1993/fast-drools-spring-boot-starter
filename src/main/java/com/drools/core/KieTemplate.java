@@ -100,8 +100,9 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         } catch (FileNotFoundException e) {
             logger.error("file not fount.");
         }
-        // xls文件
-        if (realPath.endsWith(SUFFIX_EXCEL)) {
+        // excel文件 xls和xlsx都支持
+        // @author <a href="mailto:312182539@qq.com">fbf</a>
+        if (realPath.endsWith(SUFFIX_EXCEL)||realPath.endsWith(SUFFIX_EXCEL_2007)) {
             return new SpreadsheetCompiler().compile(is, InputType.XLS);
         }
         // csv文件
