@@ -21,7 +21,7 @@
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>2.2.0</version>
+      <version>2.1.9</version>
   </dependency>
   ```
 - 2）在配置文件中指定规则文件的路径
