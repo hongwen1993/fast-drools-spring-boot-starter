@@ -9,6 +9,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 
 import java.io.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:hongwen0928@outlook.com">Karas</a>
@@ -22,7 +23,22 @@ public class FileUtil {
     /**
      * 临时存放规则文件的文件夹
      */
-    private static final String TEMP_DIR = "temp";
+    public static final String TEMP_DIR;
+
+    static {
+        boolean isLinux = System.getProperty("os.name").toLowerCase().contains("linux");
+        if (isLinux) {
+            TEMP_DIR = "/tmp";
+        } else {
+            Map<String, String> map = System.getenv();
+            String win = map.get("TEMP");
+            if (win != null && win.length() > 0) {
+                TEMP_DIR = map.get("TEMP");
+            } else {
+                TEMP_DIR = "temp";
+            }
+        }
+    }
 
     /**
      * 整合所有文件，到所传的List中
