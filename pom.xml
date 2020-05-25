@@ -6,7 +6,7 @@
 
     <groupId>com.github.hongwen1993</groupId>
     <artifactId>fast-drools-spring-boot-starter</artifactId>
-    <version>2.2.0.2</version>
+    <version>7.37.0.Final</version>
     <url>https://github.com/hongwen1993/</url>
 
     <name>fast-drools-spring-boot-starter</name>
@@ -59,7 +59,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.test.skip>true</maven.test.skip>
-        <hw-drools.version>7.22.0.Final</hw-drools.version>
+        <hw-drools.version>7.37.0.Final</hw-drools.version>
         <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
         <slf4j-api.version>1.7.26</slf4j-api.version>
         <junit.version>4.12</junit.version>

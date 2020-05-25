@@ -15,13 +15,13 @@
 - Drools视频教程：https://space.bilibili.com/564757
 
 ## 使用方法
-- 1）在`pom.xml`中引入依赖（**update 2020/04/21**）：
+- 1）在`pom.xml`中引入依赖（**update 2020/05/25**）：
 
   ```xml
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>2.2.0.2</version>
+      <version>7.37.0.Final</version>
   </dependency>
   ```
 - 2）在配置文件中指定规则文件的路径
@@ -53,6 +53,7 @@
 ## 当前功能
 
 - SpringBoot 与 Drools 快速整合，再也不需要配置繁琐的 kmodule.xml 啦。
+- 指定文件名执行评估规则，更加直观的流程分析。
 - 规则文件动态加载
 - 规则文件分组控制
 - 使用NIO的文件映射，更快速的文件的读写
