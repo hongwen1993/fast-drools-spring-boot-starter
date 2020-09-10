@@ -25,6 +25,11 @@ public class DroolsProperties {
      */
     private String mode;
 
+    /**
+     * 是否开启监听器：on = 开；off = 关闭
+     */
+    private String listener;
+
     public String getPath() {
         return path;
     }
@@ -49,4 +54,11 @@ public class DroolsProperties {
         this.mode = mode;
     }
 
+    public String getListener() {
+        return listener;
+    }
+
+    public void setListener(String listener) {
+        this.listener = listener;
+    }
 }

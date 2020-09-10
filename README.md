@@ -15,15 +15,16 @@
 - Drools视频教程：https://space.bilibili.com/564757
 
 ## 使用方法
-- 1）在`pom.xml`中引入依赖（**update 2020/05/25**）：
+- 1）在`pom.xml`中引入依赖（**update 2020/09/10**）：
 
   ```xml
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>7.37.0.Final</version>
+      <version>8.0.1-SNAPSHOT</version>
   </dependency>
   ```
+  
 - 2）在配置文件中指定规则文件的路径
 
   ```xml
@@ -34,37 +35,59 @@
   spring.drools.mode = stream
   # 指定规则文件自动更新的周期，单位秒，默认30秒扫描一次
   spring.drools.update = 10
+  # 关闭监听日志（默认开启）
+  spring.drools.listener = off
   ```
+  
 - 3）使用注解方式引入KieTemplate
 
   ```java
   @Autowired
   private KieTemplate kieTemplate;
   ```
+  
 - 4）使用 kieTemplate 的 getKieSession 方法，指定规则文件名，就可以获取对应的 Session，可以传入多个规则文件，包括决策表
 
   ```java
   KieSession kieSession = kieTemplate.getKieSession("rule1.drl", "rule2.drl");
   ......
   ```
+  
+- 5）结果展示
+
+  ```java
+  2020-09-10 16:51:08.344 INFO ===>>开始更新规则文件
+  2020-09-10 16:51:09.730 INFO ===>>插入对象：[fact 0:1:1571707504:1072693248:1:DEFAULT:NON_TRAIT:java.lang.Double:1.0]；操作规则：null
+  2020-09-10 16:51:09.748 INFO ===>>匹配的规则：[Rule name=规则1-1, agendaGroup=MAIN, salience=0, no-loop=false]
+  2020-09-10 16:51:09.761 INFO ===>>开始执行Java代码块，匹配规则：[Rule name=规则1-1, agendaGroup=MAIN, salience=0, no-loop=false]，评估对象：[[fact 0:1:1571707504:1072693248:1:DEFAULT:NON_TRAIT:java.lang.Double:1.0]]
+  .... 执行过程忽略 ....
+  2020-09-10 16:51:09.765 INFO ===>>结束执行Java代码块，匹配规则：[Rule name=规则1-1, agendaGroup=MAIN, salience=0, no-loop=false]，评估对象：[[fact 0:1:1571707504:1072693248:1:DEFAULT:NON_TRAIT:java.lang.Double:1.0]]
+  ```
 
 （KieTemplate 下封装了许多 Drools 的功能，许多便捷的 API 等你来发现！）
 
+## 细节问题
+- 1）为什么在开发时，使用 classpath 指定规则文件后，无法动态更新规则？
+    - 开发时，如果规则文件使用 Intellij 打开修改，在完成修改后，需要按 Ctrl + F9，或手动编译当前规则文件。
+    
+- 2）...
+
 ## 当前功能
 
-- SpringBoot 与 Drools 快速整合，再也不需要配置繁琐的 kmodule.xml 啦。
-- 指定文件名执行评估规则，更加直观的流程分析。
-- 规则文件动态加载
-- 规则文件分组控制
-- 使用NIO的文件映射，更快速的文件的读写
-- 基于缓存的规则文件控制，更高效的规则评估
-- 支持各种路径格式
-- 支持xls和xlsx格式的规则表文件
+- [x] SpringBoot 与 Drools 快速整合，再也不需要配置繁琐的 kmodule.xml 啦。
+- [x] 指定文件名执行评估规则，更加直观的流程分析。
+- [x] 规则文件动态加载
+- [x] 规则文件分组控制
+- [x] 使用NIO的文件映射，更快速的文件的读写
+- [x] 基于缓存的规则文件控制，更高效的规则评估
+- [x] 支持各种路径格式
+- [x] 支持xls和xlsx格式的规则表文件
+- [x] 日志监控流程中规则与评估对象的动态
+- [ ] 执行速度与性能的极致，且可定制
 
 
 ## 未来功能
 
-- 选择性记录日志输出
 - 规则执行监控
 - 基于分布式的评估与决策
 - 规则执行成功失败率统计

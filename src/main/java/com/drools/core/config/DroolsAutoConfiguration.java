@@ -23,6 +23,7 @@ public class DroolsAutoConfiguration {
         kieTemplate.setPath(droolsProperties.getPath());
         kieTemplate.setMode(droolsProperties.getMode());
         kieTemplate.setUpdate(droolsProperties.getUpdate());
+        kieTemplate.setListener(droolsProperties.getListener());
         return kieTemplate;
     }
 

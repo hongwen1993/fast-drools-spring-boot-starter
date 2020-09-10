@@ -26,6 +26,21 @@ public class ScheduledThreadPoolExecutorUtil {
     );
 
     /**
+     * 持久化Kie专用
+     *
+     */
+    public static ScheduledThreadPoolExecutor CACHE_KIE = new ScheduledThreadPoolExecutor(
+            Runtime.getRuntime().availableProcessors() * 2,
+            new DefaultThreadFactory("cache-kie-schedule-"),
+            new ThreadPoolExecutor.AbortPolicy() {
+                @Override
+                public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+                    throw new RejectedExecutionException("持久化Kie异常：" + e);
+                }
+            }
+    );
+
+    /**
      * The default thread factory
      */
     static class DefaultThreadFactory implements ThreadFactory {

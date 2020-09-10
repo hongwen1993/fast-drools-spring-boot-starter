@@ -4,7 +4,7 @@ package com.drools.core.common;
  * 基础常量
  *
  * @author <a href="mailto:hongwen0928@outlook.com">Karas</a>
- * @date 2020/3/10 22:34
+ * @date 2020/3/10
  * @since 1.0.0
  */
 public class Constants {
@@ -27,5 +27,15 @@ public class Constants {
      * CSV后缀
      */
     public static final String SUFFIX_CSV = "csv";
+
+    /**
+     * 开启监听器的标识符
+     */
+    public static final String LISTENER_OPEN = "on";
+
+    /**
+     * 关闭监听器的标识符
+     */
+    public static final String LISTENER_CLOSE = "off";
 
 }

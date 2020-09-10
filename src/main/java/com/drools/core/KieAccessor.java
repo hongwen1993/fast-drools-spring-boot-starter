@@ -21,6 +21,8 @@ public class KieAccessor implements InitializingBean {
 
     private Long update;
 
+    private String listener;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if (path == null || path.length() == 0) {
@@ -50,5 +52,13 @@ public class KieAccessor implements InitializingBean {
 
     public void setUpdate(Long update) {
         this.update = update;
+    }
+
+    public String getListener() {
+        return listener;
+    }
+
+    public void setListener(String listener) {
+        this.listener = listener;
     }
 }

@@ -1,5 +1,8 @@
 package com.drools.core;
 
+import com.drools.core.listener.DefaultAgendaEventListener;
+import com.drools.core.listener.DefaultProcessEventListener;
+import com.drools.core.listener.DefaultRuleRuntimeEventListener;
 import com.drools.core.util.FileUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.drools.decisiontable.InputType;
@@ -26,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.drools.core.common.Constants.*;
@@ -41,6 +46,9 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
      * 如果没有分布式的缓存工具，则使用本地缓存
      */
     public Map<String, String> CACHE_RULE = new ConcurrentHashMap<>();
+
+    public static Map<String, BlockingQueue<KieSession>> SESSION = new ConcurrentHashMap<>();
+    public static Map<String, BlockingQueue<KieBase>> BASE = new ConcurrentHashMap<>();
 
     private ClassLoader classLoader;
 
@@ -165,13 +173,20 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             throw new IllegalStateException("Compilation errors.");
         }
         KieBaseConfiguration config = kieHelper.ks.newKieBaseConfiguration();
-        if ("stream".equalsIgnoreCase(getMode())) {
+
+        if (EventProcessingOption.STREAM.getMode().equalsIgnoreCase(getMode())) {
             config.setOption(EventProcessingOption.STREAM);
         } else {
             config.setOption(EventProcessingOption.CLOUD);
         }
         KieBase kieBase = kieHelper.build(config);
-        return kieBase.newKieSession();
+        KieSession kieSession = kieBase.newKieSession();
+        if (getListener() == null || !LISTENER_CLOSE.equalsIgnoreCase(getListener())) {
+            kieSession.addEventListener(new DefaultRuleRuntimeEventListener());
+            kieSession.addEventListener(new DefaultAgendaEventListener());
+            kieSession.addEventListener(new DefaultProcessEventListener());
+        }
+        return kieSession;
     }
 
     /**

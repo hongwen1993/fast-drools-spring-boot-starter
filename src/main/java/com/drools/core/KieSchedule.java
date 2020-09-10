@@ -26,6 +26,14 @@ public class KieSchedule implements InitializingBean {
         ScheduledThreadPoolExecutorUtil.RULE_SCHEDULE.
                 scheduleAtFixedRate(new RuleCache(kieTemplate),
                 1, update, TimeUnit.SECONDS);
+
+        ScheduledThreadPoolExecutorUtil.CACHE_KIE.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }, 1, 1, TimeUnit.SECONDS);
+
     }
 
     @Override

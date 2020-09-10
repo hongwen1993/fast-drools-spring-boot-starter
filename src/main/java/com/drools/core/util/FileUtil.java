@@ -90,7 +90,7 @@ public class FileUtil {
         try {
             is = resource.getInputStream();
             byte[] buffer = new byte[is.available()];
-            is.read(buffer);
+            int n = is.read(buffer);
             targetFile = new File(TEMP_DIR + File.separator + resource.getFilename());
             os = new FileOutputStream(targetFile);
             os.write(buffer);
@@ -111,6 +111,9 @@ public class FileUtil {
         return targetFile;
     }
 
+    /**
+     * 创建临时目录文件夹
+     */
     public static void createTempDir() {
         File file = new File(TEMP_DIR);
         if (!file.exists()) {
