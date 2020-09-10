@@ -99,3 +99,6 @@
 ## 开源协议
 [Apache 2.0](/LICENSE)
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/hongwen1993/fast-drools-spring-boot-starter)](https://starchart.cc/hongwen1993/fast-drools-spring-boot-starter)
