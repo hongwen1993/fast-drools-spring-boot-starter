@@ -15,13 +15,13 @@
 - Drools视频教程：https://space.bilibili.com/564757
 
 ## 使用方法
-- 1）在`pom.xml`中引入依赖（**update 2020/09/10**）：
+- 1）在`pom.xml`中引入依赖（**update 2020/09/14**）：
 
   ```xml
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>8.0.1-SNAPSHOT</version>
+      <version>8.0.2-SNAPSHOT</version>
   </dependency>
   ```
   

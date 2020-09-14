@@ -15,51 +15,51 @@ public class DefaultProcessEventListener implements ProcessEventListener {
 
     @Override
     public void beforeProcessStarted(ProcessStartedEvent event) {
-        System.out.println("beforeProcessStarted()");
+
     }
 
     @Override
     public void afterProcessStarted(ProcessStartedEvent event) {
-        System.out.println("afterProcessStarted()");
+
     }
 
     @Override
     public void beforeProcessCompleted(ProcessCompletedEvent event) {
-        System.out.println("beforeProcessCompleted()");
+
     }
 
     @Override
     public void afterProcessCompleted(ProcessCompletedEvent event) {
-        System.out.println("afterProcessCompleted()");
+
     }
 
     @Override
     public void beforeNodeTriggered(ProcessNodeTriggeredEvent event) {
-        System.out.println("beforeNodeTriggered()");
+
     }
 
     @Override
     public void afterNodeTriggered(ProcessNodeTriggeredEvent event) {
-        System.out.println("afterNodeTriggered()");
+
     }
 
     @Override
     public void beforeNodeLeft(ProcessNodeLeftEvent event) {
-        System.out.println("beforeNodeLeft()");
+
     }
 
     @Override
     public void afterNodeLeft(ProcessNodeLeftEvent event) {
-        System.out.println("afterNodeLeft()");
+
     }
 
     @Override
     public void beforeVariableChanged(ProcessVariableChangedEvent event) {
-        System.out.println("beforeVariableChanged()");
+
     }
 
     @Override
     public void afterVariableChanged(ProcessVariableChangedEvent event) {
-        System.out.println("afterVariableChanged()");
+
     }
 }
