@@ -35,8 +35,8 @@
   spring.drools.mode = stream
   # 指定规则文件自动更新的周期，单位秒，默认30秒扫描一次
   spring.drools.update = 10
-  # 关闭监听日志（默认开启）
-  spring.drools.listener = off
+  # 规则监听日志，默认开启（on = 开启，off = 关闭）
+  spring.drools.listener = on
   ```
   
 - 3）使用注解方式引入KieTemplate
