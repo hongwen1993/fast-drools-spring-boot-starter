@@ -23,13 +23,13 @@
 
 
 ## 使用方法
-- 1）在`pom.xml`中引入依赖（**update 2020/09/14**）：
+- 1）在`pom.xml`中引入依赖（**update 2020/09/17**）：
 
   ```xml
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>8.0.3</version>
+      <version>8.0.5</version>
   </dependency>
   ```
   

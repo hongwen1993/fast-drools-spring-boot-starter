@@ -117,7 +117,14 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         if (realPath.endsWith(SUFFIX_CSV)) {
             return new SpreadsheetCompiler().compile(is, InputType.CSV);
         }
-        return null;
+        if (is != null) {
+            try {
+                is.close();
+            } catch (IOException e) {
+                logger.error("close stream error=>", e);
+            }
+        }
+        return "package src.main.resources;";
     }
 
     /**
