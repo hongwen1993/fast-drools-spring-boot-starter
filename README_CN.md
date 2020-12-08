@@ -21,10 +21,13 @@
 
 
 ## FAQ
-- 1）为什么在开发时，无法动态更新规则？
+- 1）Demo地址
+    - https://github.com/hongwen1993/all/tree/master/java/drools/boot-drools
+
+- 2）为什么在开发时，无法动态更新规则？
     - 开发时，不推荐使用 Intellij IDEA 等开发工具打开规则文件进行修改，因为可能并不会自动保存规则文件，如果一定要使用，则修改规则文件后，按 Ctrl + F9，或手动编译当前规则文件。
-    
-- 2）...
+
+- 3）...
 
 
 ## Usage
