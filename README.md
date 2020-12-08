@@ -21,11 +21,13 @@ Feel free to ask me any questions with the contacts below.
 
 
 ## FAQ
-- 1）Why I can't dynamically update rules in development environment?
-    - In development stage, it is not recommended to use tools such as Intellij IDEA for rule modification. If insisted, Ctrl + F9 or compile manually to apply the changes you make.
-    
-- 2）...
+- 1）Demo？
+    - https://github.com/hongwen1993/all/tree/master/java/drools/boot-drools
 
+- 2）Why I can't dynamically update rules in development environment?
+    - In development stage, it is not recommended to use tools such as Intellij IDEA for rule modification. If insisted, Ctrl + F9 or compile manually to apply the changes you make.
+
+- 3）...
 
 ## Usage
 - 1）Inject the following dependency in `pom.xml`（**update 2020/11/19**）：
