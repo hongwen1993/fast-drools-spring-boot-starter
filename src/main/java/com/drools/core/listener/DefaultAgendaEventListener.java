@@ -15,7 +15,7 @@ public class DefaultAgendaEventListener implements AgendaEventListener {
 
     @Override
     public void matchCreated(MatchCreatedEvent event) {
-        logger.info("===>>匹配的规则：{}", event.getMatch().getRule());
+        logger.debug("===>>匹配的规则：{}", event.getMatch().getRule());
     }
 
     @Override
@@ -25,13 +25,13 @@ public class DefaultAgendaEventListener implements AgendaEventListener {
 
     @Override
     public void beforeMatchFired(BeforeMatchFiredEvent event) {
-        logger.info("===>>开始执行Java代码块，匹配规则：{}，评估对象：{}",
+        logger.debug("===>>开始执行Java代码块，匹配规则：{}，评估对象：{}",
                 event.getMatch().getRule(), event.getMatch().getFactHandles());
     }
 
     @Override
     public void afterMatchFired(AfterMatchFiredEvent event) {
-        logger.info("===>>结束执行Java代码块，匹配规则：{}，评估对象：{}",
+        logger.debug("===>>结束执行Java代码块，匹配规则：{}，评估对象：{}",
                 event.getMatch().getRule(), event.getMatch().getFactHandles());
     }
 

@@ -20,7 +20,7 @@ public class RuleCache implements Runnable{
 
     @Override
     public void run() {
-        logger.info("===>>开始更新规则文件");
+        logger.debug("===>>开始更新规则文件");
         kieTemplate.doRead0();
     }
 }

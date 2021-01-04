@@ -18,16 +18,16 @@ public class DefaultRuleRuntimeEventListener implements RuleRuntimeEventListener
 
     @Override
     public void objectInserted(ObjectInsertedEvent event) {
-        logger.info("===>>插入对象：{}；操作规则：{}", event.getFactHandle(), event.getRule());
+        logger.debug("===>>插入对象：{}；操作规则：{}", event.getFactHandle(), event.getRule());
     }
 
     @Override
     public void objectUpdated(ObjectUpdatedEvent event) {
-        logger.info("===>>更新对象：{}；操作规则：{}", event.getFactHandle(), event.getRule());
+        logger.debug("===>>更新对象：{}；操作规则：{}", event.getFactHandle(), event.getRule());
     }
 
     @Override
     public void objectDeleted(ObjectDeletedEvent event) {
-        logger.info("===>>删除对象：{}；操作规则：{}", event.getFactHandle(), event.getRule());
+        logger.debug("===>>删除对象：{}；操作规则：{}", event.getFactHandle(), event.getRule());
     }
 }

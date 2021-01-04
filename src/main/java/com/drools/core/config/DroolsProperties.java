@@ -30,6 +30,11 @@ public class DroolsProperties {
      */
     private String listener;
 
+    /**
+     * 自动更新：on = 开；off = 关闭
+     */
+    private String autoUpdate;
+
     public String getPath() {
         return path;
     }
@@ -60,5 +65,13 @@ public class DroolsProperties {
 
     public void setListener(String listener) {
         this.listener = listener;
+    }
+
+    public String getAutoUpdate() {
+        return autoUpdate;
+    }
+
+    public void setAutoUpdate(String autoUpdate) {
+        this.autoUpdate = autoUpdate;
     }
 }

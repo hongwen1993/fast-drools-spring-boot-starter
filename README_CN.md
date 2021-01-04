@@ -28,28 +28,32 @@
 
 
 ## Usage
-- 1）在`pom.xml`中引入依赖（**update 2020/11/19**）：
+- 1）在`pom.xml`中引入依赖（**update 2021/01/04**）：
 
   ```xml
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>8.0.6</version>
+      <version>8.0.7</version>
   </dependency>
   ```
   
 - 2）在配置文件中指定规则文件的路径
 
   ```xml
-  # 指定规则文件文件夹，会自动扫描该目录下所有规则文件，决策表，以及CSV文件
+  ################## 必填属性 ##################
+  # 指定规则文件目录，会自动扫描该目录下所有规则文件，决策表，以及CSV文件
   # 支持classpath资源目录，如：classpath:drools/**/*.drl
   spring.drools.path = C:\\DRL\\
+  ################## 可选属性 ##################
   # 也可以指定全局的mode，选择stream或cloud
   spring.drools.mode = stream
   # 指定规则文件自动更新的周期，单位秒，默认30秒扫描一次
   spring.drools.update = 10
   # 规则监听日志，默认开启（on = 开启，off = 关闭）
   spring.drools.listener = on
+  # 关闭自动更新（不推荐）
+  spring.drools.auto-update = off
   ```
   
 - 3）使用注解方式引入KieTemplate
@@ -69,12 +73,12 @@
 - 5）结果展示
 
   ```java
-  2020-09-10 16:51:08.344 INFO ===>>开始更新规则文件
-  2020-09-10 16:51:09.730 INFO ===>>插入对象：[fact 0:1:1571707504:1072693248:1:DEFAULT:NON_TRAIT:java.lang.Double:1.0]；操作规则：null
-  2020-09-10 16:51:09.748 INFO ===>>匹配的规则：[Rule name=规则1-1, agendaGroup=MAIN, salience=0, no-loop=false]
-  2020-09-10 16:51:09.761 INFO ===>>开始执行Java代码块，匹配规则：[Rule name=规则1-1, agendaGroup=MAIN, salience=0, no-loop=false]，评估对象：[[fact 0:1:1571707504:1072693248:1:DEFAULT:NON_TRAIT:java.lang.Double:1.0]]
+  2020-09-10 16:51:08.344 DEBUG ===>>开始更新规则文件
+  2020-09-10 16:51:09.730 DEBUG ===>>插入对象：[fact 0:1:1571707504:1072693248:1:DEFAULT:NON_TRAIT:java.lang.Double:1.0]；操作规则：null
+  2020-09-10 16:51:09.748 DEBUG ===>>匹配的规则：[Rule name=规则1-1, agendaGroup=MAIN, salience=0, no-loop=false]
+  2020-09-10 16:51:09.761 DEBUG ===>>开始执行Java代码块，匹配规则：[Rule name=规则1-1, agendaGroup=MAIN, salience=0, no-loop=false]，评估对象：[[fact 0:1:1571707504:1072693248:1:DEFAULT:NON_TRAIT:java.lang.Double:1.0]]
   .... 执行过程忽略 ....
-  2020-09-10 16:51:09.765 INFO ===>>结束执行Java代码块，匹配规则：[Rule name=规则1-1, agendaGroup=MAIN, salience=0, no-loop=false]，评估对象：[[fact 0:1:1571707504:1072693248:1:DEFAULT:NON_TRAIT:java.lang.Double:1.0]]
+  2020-09-10 16:51:09.765 DEBUG ===>>结束执行Java代码块，匹配规则：[Rule name=规则1-1, agendaGroup=MAIN, salience=0, no-loop=false]，评估对象：[[fact 0:1:1571707504:1072693248:1:DEFAULT:NON_TRAIT:java.lang.Double:1.0]]
   ```
 
 （KieTemplate 下封装了许多 Drools 的功能，许多便捷的 API 等你来发现！）
