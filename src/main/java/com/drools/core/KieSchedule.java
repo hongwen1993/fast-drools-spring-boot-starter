@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:hongwen0928@outlook.com">Karas</a>
- * @date 2019/9/27 10:34
+ * @date 2019/9/27
  * @since 1.0.0
  */
 public class KieSchedule implements InitializingBean {
@@ -27,13 +27,12 @@ public class KieSchedule implements InitializingBean {
                 scheduleAtFixedRate(new RuleCache(kieTemplate),
                 1, update, TimeUnit.SECONDS);
 
-        ScheduledThreadPoolExecutorUtil.CACHE_KIE.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        }, 1, 1, TimeUnit.SECONDS);
-
+        //ScheduledThreadPoolExecutorUtil.CACHE_KIE.scheduleAtFixedRate(new Runnable() {
+        //    @Override
+        //    public void run() {
+        //
+        //    }
+        //}, 1, 1, TimeUnit.SECONDS);
     }
 
     @Override
