@@ -37,7 +37,7 @@
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>8.0.7</version>
+      <version>8.0.8</version>
   </dependency>
   ```
   
