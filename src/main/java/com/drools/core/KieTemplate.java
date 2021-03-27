@@ -171,14 +171,19 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         for (String s : drl) {
             kieHelper.addContent(s, ResourceType.DRL);
         }
-        Results results = kieHelper.verify();
-        if (results.hasMessages(Message.Level.WARNING, Message.Level.ERROR)) {
-            List<Message> messages = results.getMessages(Message.Level.WARNING, Message.Level.ERROR);
-            for (Message message : messages) {
-                logger.error("Error: {}", message.getText());
+
+        if (getVerify() != null && LISTENER_OPEN.equalsIgnoreCase(getVerify())) {
+            Results results = kieHelper.verify();
+            if (results.hasMessages(Message.Level.WARNING, Message.Level.ERROR)) {
+                List<Message> messages = results.getMessages(Message.Level.WARNING, Message.Level.ERROR);
+                for (Message message : messages) {
+                    logger.error("Error: {}", message.getText());
+                }
+                throw new IllegalStateException("Compilation errors.");
             }
-            throw new IllegalStateException("Compilation errors.");
+
         }
+
         KieBaseConfiguration config = kieHelper.ks.newKieBaseConfiguration();
 
         if (EventProcessingOption.STREAM.getMode().equalsIgnoreCase(getMode())) {

@@ -35,6 +35,11 @@ public class DroolsProperties {
      */
     private String autoUpdate;
 
+    /**
+     * 是否开启规则
+     */
+    private String verify;
+
     public String getPath() {
         return path;
     }
@@ -73,5 +78,13 @@ public class DroolsProperties {
 
     public void setAutoUpdate(String autoUpdate) {
         this.autoUpdate = autoUpdate;
+    }
+
+    public String getVerify() {
+        return verify;
+    }
+
+    public void setVerify(String verify) {
+        this.verify = verify;
     }
 }

@@ -23,6 +23,8 @@ public class KieAccessor implements InitializingBean {
 
     private String listener;
 
+    private String verify;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if (path == null || path.length() == 0) {
@@ -60,5 +62,13 @@ public class KieAccessor implements InitializingBean {
 
     public void setListener(String listener) {
         this.listener = listener;
+    }
+
+    public String getVerify() {
+        return verify;
+    }
+
+    public void setVerify(String verify) {
+        this.verify = verify;
     }
 }

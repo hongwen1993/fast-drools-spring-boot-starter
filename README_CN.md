@@ -57,6 +57,8 @@
   spring.drools.listener = on
   # 关闭自动更新（不推荐）
   spring.drools.auto-update = off
+  # 开启 drl 语法检查（默认关闭）
+  spring.drools.verify = on
   ```
   
 - 3）使用注解方式引入KieTemplate

@@ -43,8 +43,7 @@ Feel free to ask me any questions with the contacts below.
 - 2）Designate path to drools rule file in the configruation file
 
   ```xml
-  # specify a rule file folder that will automatically scan all rule files, include  decision tables, and CSV files
-  # support classpath resource path，如：classpath:drools/**/*.drl
+  # (necessary) specify a rule file folder that will automatically scan all rule files, include  decision tables, and CSV files, also support classpath resource path, example：classpath:drools/**/*.drl
   spring.drools.path = C:\\DRL\\
   # set up mode with options "stream" or "cloud"
   spring.drools.mode = stream
@@ -54,6 +53,8 @@ Feel free to ask me any questions with the contacts below.
   spring.drools.listener = on
   # close drl file auto update（not recommend）
   spring.drools.auto-update = off
+  # open drl syntax checker
+  spring.drools.verify = on
   ```
   
 - 3）Introduce KieTemplate with annotation

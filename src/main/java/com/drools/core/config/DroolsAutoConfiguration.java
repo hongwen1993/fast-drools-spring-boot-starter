@@ -35,6 +35,7 @@ public class DroolsAutoConfiguration {
             kieTemplate.setUpdate(droolsProperties.getUpdate());
         }
         kieTemplate.setListener(droolsProperties.getListener());
+        kieTemplate.setVerify(droolsProperties.getVerify());
         return kieTemplate;
     }
 
