@@ -49,16 +49,16 @@
   # 支持classpath资源目录，如：classpath:drools/**/*.drl
   spring.drools.path = C:\\DRL\\
   ################## 可选属性 ##################
-  # 也可以指定全局的mode，选择stream或cloud
+  # 也可以指定全局的mode，选择stream或cloud（默认stream模式）
   spring.drools.mode = stream
-  # 指定规则文件自动更新的周期，单位秒，默认30秒扫描一次
+  # 自动更新，on 或 off（默认开启）
+  spring.drools.auto-update = on
+  # 指定规则文件自动更新的周期，单位秒（默认30秒扫描偶一次）
   spring.drools.update = 10
-  # 规则监听日志，默认开启（on = 开启，off = 关闭）
+  # 规则监听日志，on 或 off（默认开启）
   spring.drools.listener = on
-  # 关闭自动更新（不推荐）
-  spring.drools.auto-update = off
-  # 开启 drl 语法检查（默认关闭）
-  spring.drools.verify = on
+  # 开启 drl 语法检查，on 或 off（默认关闭）
+  spring.drools.verify = off
   ```
   
 - 3）使用注解方式引入KieTemplate

@@ -45,16 +45,16 @@ Feel free to ask me any questions with the contacts below.
   ```xml
   # (necessary) specify a rule file folder that will automatically scan all rule files, include  decision tables, and CSV files, also support classpath resource path, example：classpath:drools/**/*.drl
   spring.drools.path = C:\\DRL\\
-  # set up mode with options "stream" or "cloud"
+  # set up mode with options "stream" or "cloud" (default = stream)
   spring.drools.mode = stream
-  # regulates update cycle (unit in seconds, default to 30s)
+  # close drl file auto update, on or off (default = on)
+  spring.drools.auto-update = on
+  # regulates update cycle, unit is seconds (default = 30)
   spring.drools.update = 10
-  # monitoring rules (default to on)
+  # monitoring rules, on or off (default = on)
   spring.drools.listener = on
-  # close drl file auto update（not recommend）
-  spring.drools.auto-update = off
-  # open drl syntax checker
-  spring.drools.verify = on
+  # open drl syntax checker, on or off (default = off)
+  spring.drools.verify = off
   ```
   
 - 3）Introduce KieTemplate with annotation
