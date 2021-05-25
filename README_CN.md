@@ -47,6 +47,8 @@
   ################## 必填属性 ##################
   # 指定规则文件目录，会自动扫描该目录下所有规则文件，决策表，以及CSV文件
   # 支持classpath资源目录，如：classpath:drools/**/*.drl
+  # win 系统注意使用反斜杠，如：C:\\DRL\\
+  # linux 系统注意使用斜杠，如：/usr/local/drl/
   spring.drools.path = C:\\DRL\\
   ################## 可选属性 ##################
   # 也可以指定全局的mode，选择stream或cloud（默认stream模式）
