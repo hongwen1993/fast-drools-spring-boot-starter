@@ -43,7 +43,10 @@ Feel free to ask me any questions with the contacts below.
 - 2）Designate path to drools rule file in the configruation file
 
   ```xml
-  # (necessary) specify a rule file folder that will automatically scan all rule files, include  decision tables, and CSV files, also support classpath resource path, example：classpath:drools/**/*.drl
+  # (necessary) specify a rule file folder that will automatically scan all rule files, include  decision tables, and CSV files, 
+  # also support classpath resource path, example：classpath:drools/**/*.drl
+  # win system use \\, example C:\\DRL\\
+  # linux system use /, example /var/config/
   spring.drools.path = C:\\DRL\\
   # set up mode with options "stream" or "cloud" (default = stream)
   spring.drools.mode = stream
