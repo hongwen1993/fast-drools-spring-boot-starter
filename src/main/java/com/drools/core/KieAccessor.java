@@ -25,6 +25,8 @@ public class KieAccessor implements InitializingBean {
 
     private String verify;
 
+    private String charset;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if (path == null || path.length() == 0) {
@@ -70,5 +72,13 @@ public class KieAccessor implements InitializingBean {
 
     public void setVerify(String verify) {
         this.verify = verify;
+    }
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 }

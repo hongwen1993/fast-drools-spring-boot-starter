@@ -31,13 +31,13 @@
 
 
 ## Usage
-- 1）在`pom.xml`中引入依赖（**update 2021/01/04**）：
+- 1）在`pom.xml`中引入依赖（**update 2022/01/20**）：
 
   ```xml
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>8.0.8</version>
+      <version>8.0.9</version>
   </dependency>
   ```
   
@@ -61,6 +61,8 @@
   spring.drools.listener = on
   # 开启 drl 语法检查，on 或 off（默认关闭）
   spring.drools.verify = off
+  # 指定规则文件的字符集（默认 UTF-8）
+  spring.drools.charset = GBK
   ```
   
 - 3）使用注解方式引入KieTemplate

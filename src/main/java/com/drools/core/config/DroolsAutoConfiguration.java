@@ -2,6 +2,7 @@ package com.drools.core.config;
 
 import com.drools.core.KieSchedule;
 import com.drools.core.KieTemplate;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +37,10 @@ public class DroolsAutoConfiguration {
         }
         kieTemplate.setListener(droolsProperties.getListener());
         kieTemplate.setVerify(droolsProperties.getVerify());
+        String charset = droolsProperties.getCharset();
+        if (StringUtils.isNotBlank(charset)) {
+            kieTemplate.setCharset(charset);
+        }
         return kieTemplate;
     }
 

@@ -53,6 +53,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     private ClassLoader classLoader;
 
     public KieTemplate() {
+        setCharset("UTF-8");
     }
 
 
@@ -132,22 +133,33 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
      */
     private String read(File file) {
         FileInputStream fis = null;
-        ByteArrayOutputStream bos = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
         try {
             fis = new FileInputStream(file);
-            bos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = fis.read(buffer)) != -1) {
-                bos.write(buffer, 0, length);
+            isr = new InputStreamReader(fis, getCharset());
+            br = new BufferedReader(isr);
+            StringBuilder builder = new StringBuilder();
+            String line;
+            boolean tf = true;
+            while ((line = br.readLine()) != null) {
+                if (tf) {
+                    builder.append(line);
+                    tf = false;
+                } else {
+                    builder.append("\n").append(line);
+                }
             }
-            return bos.toString();
+            return builder.toString();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (bos != null) {
-                    bos.close();
+                if (br != null) {
+                    br.close();
+                }
+                if (isr != null) {
+                    isr.close();
                 }
                 if (fis != null) {
                     fis.close();

@@ -30,13 +30,13 @@ Feel free to ask me any questions with the contacts below.
 - 3）...
 
 ## Usage
-- 1）Inject the following dependency in `pom.xml`（**update 2021/01/04**）：
+- 1）Inject the following dependency in `pom.xml`（**update 2021/01/20**）：
 
   ```xml
   <dependency>
       <groupId>com.github.hongwen1993</groupId>
       <artifactId>fast-drools-spring-boot-starter</artifactId>
-      <version>8.0.8</version>
+      <version>8.0.9</version>
   </dependency>
   ```
   
@@ -58,6 +58,8 @@ Feel free to ask me any questions with the contacts below.
   spring.drools.listener = on
   # open drl syntax checker, on or off (default = off)
   spring.drools.verify = off
+  # default drl file charset（default utf-8）
+  spring.drools.charset = GBK
   ```
   
 - 3）Introduce KieTemplate with annotation

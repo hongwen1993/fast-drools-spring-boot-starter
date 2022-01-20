@@ -40,6 +40,11 @@ public class DroolsProperties {
      */
     private String verify;
 
+    /**
+     * 规则文件编码类型
+     */
+    private String charset;
+
     public String getPath() {
         return path;
     }
@@ -86,5 +91,13 @@ public class DroolsProperties {
 
     public void setVerify(String verify) {
         this.verify = verify;
+    }
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 }
